@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Person
 from .forms import PersonForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def person_list(request):
     persons = Person.objects.all()
     return render(request, 'person.html', {'persons': persons})
 
 
+@login_required
 def person_new(request):
     # modo de enviar o formulário, e arquivos de media
     form = PersonForm(request.POST or None, request.FILES or None)
@@ -20,6 +23,7 @@ def person_new(request):
     return render(request, 'person_form.html', {'form': form})
 
 
+@login_required
 def person_update(request, id_person):
     person = get_object_or_404(Person, pk=id_person)
     form = PersonForm(request.POST or None, request.FILES or None, instance=person)
@@ -30,6 +34,7 @@ def person_update(request, id_person):
     return render(request, 'person_form.html', {'form': form})
 
 
+@login_required
 def person_delete(request, id_person):
     person = get_object_or_404(Person, pk=id_person)
     form = PersonForm(request.POST or None, request.FILES or None, instance=person)
