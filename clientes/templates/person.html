@@ -3,17 +3,34 @@
 {% block title %}Listagem{% endblock %}
 
 {% block main %}
+    <div class="container">
+  <div class="row">
 
-    <a href="{% url 'logout' %}" class="btn btn-primary">Sair</a>
-    <ul>
+    <div class="col-sm">
+
+    </div>
+
+    <div class="col-sm">
+
+    <ul class="list-gruop">
     {% for person in persons %}
-        <li>
+        <li class="list-group-item">
             {{ person }}
-            <a href="{% url 'person_update' person.id %}" class="btn btn-warning">editar</a>
-            <a href="{% url 'person_delete' person.id %}" class="btn btn-danger">deletar</a>
+            <a href="{% url 'person_update' person.id %}"> <i class="fa fa-pencil fa-2x" aria-hidden="true"></i></a>
+            <a href="{% url 'person_delete' person.id %}"> <i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
         </li>
     {% endfor %}
     </ul>
-    <a href="{% url 'person_new' %}" class="btn btn-success">Novo cliente</a>
+    <a href="{% url 'person_new' %}" class="btn btn-success" >Novo cliente</a>
+    </div>
+
+    <div class="col-sm">
+        <p>Olá {{ user.username }}</p>
+        <a href="{% url 'logout' %}" class="btn btn-primary">Sair</a>
+    </div>
+
+  </div>
+</div>
+
 
 {% endblock %}
