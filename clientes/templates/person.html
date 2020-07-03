@@ -1,21 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <a href="{% url 'logout' %}">Sair</a>
+{% block title %}Listagem{% endblock %}
+
+{% block main %}
+
+    <a href="{% url 'logout' %}" class="btn btn-primary">Sair</a>
     <ul>
     {% for person in persons %}
         <li>
             {{ person }}
-            <a href="{% url 'person_update' person.id %}">editar</a>
-            <a href="{% url 'person_delete' person.id %}">deletar</a>
+            <a href="{% url 'person_update' person.id %}" class="btn btn-warning">editar</a>
+            <a href="{% url 'person_delete' person.id %}" class="btn btn-danger">deletar</a>
         </li>
     {% endfor %}
     </ul>
-    <a href="{% url 'person_new' %}">Novo cliente</a>
-</body>
-</html>
+    <a href="{% url 'person_new' %}" class="btn btn-success">Novo cliente</a>
+
+{% endblock %}
